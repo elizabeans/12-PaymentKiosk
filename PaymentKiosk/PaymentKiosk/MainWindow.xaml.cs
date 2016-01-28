@@ -44,6 +44,10 @@ namespace PaymentKiosk
             };
 
             bool success = MoneyServices.Charge(customer, creditCard, decimal.Parse(textBoxChargeAmount.Text));
+
+            string message = "Your transaction for $" + textBoxChargeAmount.Text + " has been approved.";
+
+            SmsService.SendSMS("+17038640171", message);
         }
     }
 }
