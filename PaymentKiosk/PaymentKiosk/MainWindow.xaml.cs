@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using PaymentKiosk.Core.Domain;
 using PaymentKiosk.Core.Services;
+using PaymentKiosk.Shopping;
 
 
 namespace PaymentKiosk
@@ -26,14 +27,26 @@ namespace PaymentKiosk
         public MainWindow()
         {
             InitializeComponent();
+            textBoxChargeAmount.Text = ShoppingWindow.pokemonTotalPrice.ToString();
         }
 
         private void buttonCharge_Click(object sender, RoutedEventArgs e)
         {
+            Address shipping = new Address
+            {
+                Line1 = textBoxAddressLine1.Text,
+                Line2 = textBoxAddressLine2.Text,
+                Line3 = textBoxAddressLine3.Text,
+                City = textBoxAddressCity.Text,
+                State = textBoxAddressState.Text,
+                Zipcode = textBoxAddressZipcode.Text
+            };
+
             var customer = new Customer
             {
                 CustomerName = textBoxCustomerName.Text,
                 CustomerTelephone = textBoxCustomerTelephone.Text,
+                ShippingAddress = shipping
             };
 
             var creditCard = new CreditCard
@@ -45,9 +58,18 @@ namespace PaymentKiosk
 
             bool success = MoneyServices.Charge(customer, creditCard, decimal.Parse(textBoxChargeAmount.Text));
 
-            string message = "Your transaction for $" + textBoxChargeAmount.Text + " has been approved.";
+            string message = "Hi " + customer.CustomerName + "! Your transaction for $" + textBoxChargeAmount.Text + 
+                             " has been approved. Your pokemon will be delivered to " + 
+                             shipping.Line1 + shipping.Line2 + shipping.Line3 + shipping.City + shipping.State + shipping.Zipcode;
 
             SmsService.SendSMS("+17038640171", message);
+            MessageBox.Show("Your purchase has been approved! Your confirmation will be sent to your phone.");
+        }
+
+        private void buttonContinueShopping_Click(object sender, RoutedEventArgs e)
+        {
+            ShoppingWindow shopping = new ShoppingWindow();
+            shopping.ShowDialog();
         }
     }
 }
