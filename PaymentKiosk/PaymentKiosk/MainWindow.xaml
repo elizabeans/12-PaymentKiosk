@@ -1,0 +1,61 @@
+﻿<Window x:Class="PaymentKiosk.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PaymentKiosk"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="1000">
+    <Grid>
+        
+        <!--Customer Information-->
+        <Label x:Name="labelCustomerInfo" Content="Customer Information" HorizontalAlignment="Left" Margin="22,10,0,0" VerticalAlignment="Top" Width="210" FontSize="18.667" FontFamily="Century Gothic" Background="White"/>
+        
+        <Label x:Name="labelCustomerName" Content="Customer Name" HorizontalAlignment="Left" Margin="22,48,0,0" VerticalAlignment="Top" FontSize="14.667"/>
+        <TextBox x:Name="textBoxCustomerName" HorizontalAlignment="Left" Height="23" Margin="170,48,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="245" FontSize="14.667"/>
+
+        <Label x:Name="labelCustomerTelephone" Content="Customer Telephone" HorizontalAlignment="Left" Margin="22,74,0,0" VerticalAlignment="Top" FontSize="14.667"/>
+        <TextBox x:Name="textBoxCustomerTelephone" HorizontalAlignment="Left" Height="23" Margin="170,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="245" FontSize="14.667"/>
+       
+        <!--Address Information-->
+        <Label x:Name="labelAddress" Content="Address Information" HorizontalAlignment="Left" Margin="22,134,0,0" VerticalAlignment="Top" Width="198" FontSize="18.667" FontFamily="Century Gothic"/>
+        
+        <Label x:Name="labelAddressLine1" Content="Line 1" HorizontalAlignment="Left" Margin="22,172,0,0" VerticalAlignment="Top" FontSize="14.667"/>
+        <TextBox x:Name="textBoxAddressLine1" HorizontalAlignment="Left" Height="23" Margin="100,176,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="315" FontSize="14.667"/>
+        
+        <Label x:Name="labelAddressLine2" Content="Line 2" HorizontalAlignment="Left" Margin="22,207,0,0" VerticalAlignment="Top" FontSize="14.667"/>
+        <TextBox x:Name="textBoxAddressLine2" HorizontalAlignment="Left" Height="23" Margin="100,211,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="315" FontSize="14.667"/>
+
+        <Label x:Name="labelAddressLine3" Content="Line 3" HorizontalAlignment="Left" Margin="22,242,0,0" VerticalAlignment="Top" FontSize="14.667"/>
+        <TextBox x:Name="textBoxAddressLine3" HorizontalAlignment="Left" Height="23" Margin="100,246,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="315" FontSize="14.667"/>
+        
+        <Label x:Name="labelAddressCity" Content="City" HorizontalAlignment="Left" Margin="22,272,0,0" VerticalAlignment="Top" FontSize="14.667"/>
+        <TextBox x:Name="textBoxAddressCity" HorizontalAlignment="Left" Height="23" Margin="100,276,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="315" FontSize="14.667"/>
+        
+        <Label x:Name="labelAddressState" Content="State" HorizontalAlignment="Left" Margin="22,307,0,0" VerticalAlignment="Top" FontSize="14.667"/>
+        <TextBox x:Name="textBoxAddressState" HorizontalAlignment="Left" Height="23" Margin="100,311,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="315" FontSize="14.667"/>
+
+        <Label x:Name="labelAddressZipcode" Content="Zipcode" HorizontalAlignment="Left" Margin="22,337,0,0" VerticalAlignment="Top" FontSize="14.667"/>
+        <TextBox x:Name="textBoxAddressZipcode" HorizontalAlignment="Left" Height="23" Margin="100,341,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="315" FontSize="14.667"/>
+
+
+        <!--Payment Information-->
+        <Label x:Name="labelPaymentInfo" Content="Payment Information" HorizontalAlignment="Left" Margin="480,10,0,0" VerticalAlignment="Top" FontSize="18.667" FontFamily="Century Gothic"/>
+        
+        
+        <Label x:Name="labelChargeAmount" Content="Charge Amount ($)" HorizontalAlignment="Left" Margin="480,48,0,0" VerticalAlignment="Top" FontSize="14.667"/>
+        <TextBox x:Name="textBoxChargeAmount" HorizontalAlignment="Left" Height="23" Margin="640,52,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="330" FontSize="14.667"/>
+
+        <Label x:Name="labelCreditCardNumber" Content="Credit Card Number" HorizontalAlignment="Left" Margin="480,99,0,0" VerticalAlignment="Top" FontSize="14.667"/>
+        <TextBox x:Name="textBoxCreditCardNumber" HorizontalAlignment="Left" Height="23" Margin="640,103,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="330" FontSize="14.667"/>
+
+        <Label x:Name="labelExpiryDate" Content="ExpiryDate (MM/YY)" HorizontalAlignment="Left" Margin="480,129,0,0" VerticalAlignment="Top" FontSize="14.667"/>
+        <TextBox x:Name="textBoxExpiryDate" HorizontalAlignment="Left" Height="23" Margin="640,133,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="330" FontSize="14.667"/>
+        
+        <Label x:Name="labelCVC" Content="Security Code (CVC)" HorizontalAlignment="Left" Margin="480,159,0,0" VerticalAlignment="Top" FontSize="14.667"/>
+        <TextBox x:Name="textBoxCVC" HorizontalAlignment="Left" Height="23" Margin="640,163,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="330" FontSize="14.667"/>
+        
+        <!--Complete Transaction Button-->
+        <Button x:Name="buttonCharge" Content="Complete Transaction" Margin="22,396,22,10" FontSize="21.333" FontFamily="Arial" Click="buttonCharge_Click"/>
+    </Grid>
+</Window>
