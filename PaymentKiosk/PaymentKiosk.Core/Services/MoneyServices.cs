@@ -32,6 +32,11 @@ namespace PaymentKiosk.Core.Services
             var chargeService = new StripeChargeService(StripeApiKey);
             var response = chargeService.Create(chargeDetails);
 
+            if(response.Paid == false)
+            {
+                throw new Exception(response.FailureMessage);
+            }
+
             return response.Paid;
         }
 

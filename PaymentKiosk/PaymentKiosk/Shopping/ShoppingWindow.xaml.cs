@@ -22,6 +22,10 @@ namespace PaymentKiosk.Shopping
     {
         public static int pokemonTotalPrice = 0;
 
+        private bool pikachuClear = false;
+        private bool eeveeClear = false;
+        private bool bulbasaurClear = false;
+
         public ShoppingWindow()
         {
             InitializeComponent();
@@ -29,31 +33,61 @@ namespace PaymentKiosk.Shopping
 
         private void textBoxPikachuQuantity_MouseEnter(object sender, MouseEventArgs e)
         {
-            textBoxPikachuQuantity.Clear();
+            if (!pikachuClear)
+            {
+                textBoxPikachuQuantity.Clear();
+            }
+
+            pikachuClear = true;
         }
 
         private void textBoxEeveeQuantity_MouseEnter(object sender, MouseEventArgs e)
         {
-            textBoxEeveeQuantity.Clear();
+            if (!eeveeClear)
+            {
+                textBoxEeveeQuantity.Clear();
+            }
+
+            eeveeClear = true;
         }
 
         private void textBoxBulbasaurQuantity_MouseEnter(object sender, MouseEventArgs e)
         {
-            textBoxBulbasaurQuantity.Clear();
+            if (!bulbasaurClear)
+            {
+                textBoxBulbasaurQuantity.Clear();
+            }
+
+            bulbasaurClear = true;
         }
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
-            int addToCart = int.Parse(textBoxPikachuQuantity.Text) + int.Parse(textBoxEeveeQuantity.Text) + int.Parse(textBoxBulbasaurQuantity.Text);
-            MessageBox.Show("You've added " + textBoxPikachuQuantity.Text + " Pikachus, "
-                            + textBoxEeveeQuantity.Text + " Eevees, "
-                            + textBoxBulbasaurQuantity.Text + " Bulbasaurs!");
+            int numberOfPikachus = 0;
+            int numberOfEevees = 0;
+            int numberOfBulbasaurs = 0;
 
-            pokemonTotalPrice = PokemonService.CalculatePrice(int.Parse(textBoxPikachuQuantity.Text), int.Parse(textBoxEeveeQuantity.Text), int.Parse(textBoxBulbasaurQuantity.Text));
+            try
+            {
+                numberOfPikachus = int.Parse(textBoxPikachuQuantity.Text);
+                numberOfEevees = int.Parse(textBoxEeveeQuantity.Text);
+                numberOfBulbasaurs = int.Parse(textBoxBulbasaurQuantity.Text);
 
+                int addToCart = numberOfPikachus + numberOfEevees + numberOfBulbasaurs;
 
-            MainWindow goToCart = new MainWindow();
-            goToCart.ShowDialog();
+                MessageBox.Show("You've added " + textBoxPikachuQuantity.Text + " Pikachus, "
+                                + textBoxEeveeQuantity.Text + " Eevees, "
+                                + textBoxBulbasaurQuantity.Text + " Bulbasaurs!");
+
+                pokemonTotalPrice = PokemonService.CalculatePrice(numberOfPikachus, numberOfEevees, numberOfBulbasaurs);
+
+                MainWindow goToCart = new MainWindow();
+                goToCart.ShowDialog();
+            }
+            catch(FormatException ex)
+            {
+                MessageBox.Show("Please enter a valid number in each box.");
+            }
         }
 
      }

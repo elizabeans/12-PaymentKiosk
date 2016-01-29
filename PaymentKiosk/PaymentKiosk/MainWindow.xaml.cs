@@ -56,7 +56,23 @@ namespace PaymentKiosk
                 ExpiryDate = DateTime.Parse(textBoxExpiryDate.Text)
             };
 
-            bool success = MoneyServices.Charge(customer, creditCard, decimal.Parse(textBoxChargeAmount.Text));
+            try
+            {
+                bool success = MoneyServices.Charge(customer, creditCard, decimal.Parse(textBoxChargeAmount.Text));
+
+                if (success)
+                {
+                    MessageBox.Show("Payment successful");
+                }
+                else
+                {
+                    MessageBox.Show("Payment failed");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
             string message = "Hi " + customer.CustomerName + "! Your transaction for $" + textBoxChargeAmount.Text + 
                              " has been approved. Your pokemon will be delivered to " + 
